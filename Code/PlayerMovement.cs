@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 walking_velocity_vector = Vector3.zero;
     private Vector3 last_walk_forward       = Vector3.zero;
     private Vector3 last_walk_right         = Vector3.zero;
-    private float   vertical_velocity       = 0.0f;
+    public  float   vertical_velocity       = 0.0f;
     private bool    jump_command            = false;
 
     private CharacterController character_controller;
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         //Move the player by the acceleration
         CollisionFlags cf = character_controller.Move(
                  (walk_amount * walking_velocity * SPEED_MULT
-                + vertical_velocity * VVEL * Vector3.down)
+                + vertical_velocity * VVEL * Vector3.up)
             * Time.deltaTime);
 
         if ((cf & CollisionFlags.Below) != 0)
